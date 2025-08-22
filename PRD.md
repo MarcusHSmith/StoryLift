@@ -12,8 +12,8 @@ This is the project board in a single markdown file. Everything is TypeScript an
 - [x] Add shadcn ui and generate Button, Card, Input, Slider, Dialog
 - [x] Set up absolute imports and `@` alias
 - [x] Configure ESLint, Prettier, Husky pre-commit
-- [x] Add Vitest and React Testing Library
-- [x] Add Playwright for E2E smoke tests
+- [x] ~~Add Vitest and React Testing Library~~ (removed)
+- [x] ~~Add Playwright for E2E smoke tests~~ (removed)
 - [x] Add a basic `/health` route returning app version and build time
 - [x] Create a minimal README with run scripts and decisions log
 

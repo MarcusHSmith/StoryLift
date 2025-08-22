@@ -1,6 +1,10 @@
 # StoryLift — Build Plan
 
-This is the project board in a single markdown file. Everything is TypeScript and deploys on Vercel. Check items off as you go.
+This is the project board in a single markdown file. Everything is TypeScript and deploys on Vercel.
+
+**Note: This application focuses exclusively on YouTube video processing for Instagram Stories. Users must download YouTube videos locally before processing due to YouTube's terms of service.**
+
+Check items off as you go.
 
 ---
 
@@ -21,7 +25,7 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ## Milestone 1 core UX and routing ✅
 
-- [x] Pages `/` for input, `/editor` for trimming and layout, `/export` for downloads
+- [x] Pages `/` for input, `/export` for downloads
 - [x] Global layout with responsive container and a 9 by 16 preview frame
 - [x] App header with name and GitHub link (https://github.com/MarcusHSmith/StoryLift)
 - [x] Empty state illustration for first load
@@ -41,18 +45,16 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ---
 
-## Milestone 3 local file ingest
+## Milestone 3 YouTube video processing
 
-- [ ] Component `SourcePicker` with drag and drop and file input
-- [ ] Accept MP4 and MOV only client side
-- [ ] Probe duration and streams using mediainfo wasm or ffmpeg.wasm `ffprobe` build
-- [ ] Show file details resolution, fps, duration
-- [ ] Persist a file handle using OPFS or File System Access API when supported
-- [ ] Guardrails file size limit setting with warning prompts
+- [ ] Extract video stream from YouTube URL (requires user to download video locally first)
+- [ ] Process downloaded video file for Instagram Stories format
+- [ ] Show video details resolution, fps, duration
+- [ ] Note: Users must download YouTube videos manually due to YouTube's terms of service
 
 ---
 
-## Milestone 5 canvas and preview
+## Milestone 4 canvas and preview
 
 - [ ] Create an OffscreenCanvas backed preview running in a Web Worker
 - [ ] 9 by 16 canvas at preview scale fit to viewport
@@ -65,7 +67,7 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ---
 
-## Milestone 6 subject aware crop optional
+## Milestone 5 subject aware crop optional
 
 - [ ] Lightweight face detection via MediaPipe Face Detection
 - [ ] Compute a tracking window and smooth with a simple Kalman or exponential filter
@@ -74,20 +76,20 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ---
 
-## Milestone 7 encoding path WebCodecs fast path
+## Milestone 6 encoding path WebCodecs fast path
 
 - [ ] Feature detect `VideoEncoder` and `AudioEncoder`
 - [ ] Configure H 264 `avc1` baseline or main profile 1080 by 1920 30 fps
 - [ ] Target bitrate 6 Mbps
 - [ ] Encode frames from the worker preview pipeline without duplicate work
-- [ ] Package into MP4 container using mp4 muxer library or fallback to ffmpeg.wasm for mux
+- [ ] Package into MP4 container using mp4 muxer library
 - [ ] AAC audio encode or copy from source when compatible
 
 ---
 
-## Milestone 8 encoding path ffmpeg.wasm universal
+## Milestone 7 encoding path universal fallback
 
-- [ ] Integrate ffmpeg.wasm in a dedicated worker with lazy loading
+- [ ] Integrate alternative encoding solution for browsers without WebCodecs support
 - [ ] Filter graph for background blur, fit layer, and overlay layer
 - [ ] Encode H 264 AAC MP4 with `+faststart`
 - [ ] Progress callback tied to a UI progress bar
@@ -95,17 +97,17 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ---
 
-## Milestone 9 export and downloads
+## Milestone 8 export and downloads
 
 - [ ] Export MP4 to user downloads with friendly filename
 - [ ] Export a JPEG cover image at one second after start
 - [ ] Show file size and duration summary
 - [ ] Copy caption button with YouTube link and hashtags
-- [ ] Post export checklist with “Open in Instagram” instructions
+- [ ] Post export checklist with "Open in Instagram" instructions
 
 ---
 
-## Milestone 10 layout presets and style
+## Milestone 9 layout presets and style
 
 - [ ] Preset A YouTube chrome bar on top of video
 - [ ] Preset B Chrome bar below video
@@ -116,7 +118,7 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ---
 
-## Milestone 11 safe zones for Instagram
+## Milestone 10 safe zones for Instagram
 
 - [ ] Top safe area guide approximately 150 to 220 pixels on a 1080 by 1920 canvas
 - [ ] Bottom reserved area guide approximately 300 to 380 pixels for the link sticker
@@ -125,7 +127,7 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ---
 
-## Milestone 12 state and persistence
+## Milestone 11 state and persistence
 
 - [ ] Global state with zustand for project data
 - [ ] Persist last project to localStorage excluding binary data
@@ -134,7 +136,7 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ---
 
-## Milestone 13 error states and resilience
+## Milestone 12 error states and resilience
 
 - [ ] Graceful handling of unsupported codecs
 - [ ] Timeout and cancel controls for long renders
@@ -143,20 +145,20 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ---
 
-## Milestone 14 branding and compliance
+## Milestone 13 branding and compliance
 
 - [ ] Pull official YouTube logo assets and follow spacing and color rules
 - [ ] Add attribution text when showing YouTube marks
-- [ ] Attestation checkbox user confirms rights to uploaded file
+- [ ] Attestation checkbox user confirms rights to downloaded YouTube content
 - [ ] Legal copy in footer linking to terms and privacy
-- [ ] Document that the app does not download from YouTube and processes user provided files locally
+- [ ] Document that the app processes user-downloaded YouTube content locally
 
 ---
 
-## Milestone 15 performance polish
+## Milestone 14 performance polish
 
 - [ ] Workerize all heavy modules
-- [ ] Defer ffmpeg.wasm load until editor mount
+- [ ] Defer heavy encoding libraries until preview mount
 - [ ] Use OPFS for temp files to avoid memory copies
 - [ ] Frame pooling in WebCodecs path
 - [ ] FPS throttle on preview for low end devices
@@ -164,16 +166,16 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ---
 
-## Milestone 16 documentation and examples
+## Milestone 15 documentation and examples
 
 - [ ] Update README with feature list and screenshots
-- [ ] Add “How it works” page describing the client side pipeline
+- [ ] Add "How it works" page describing the client side pipeline
 - [ ] Publish example presets JSON and a couple of demo outputs
 - [ ] Short Loom demo linked in the repo
 
 ---
 
-## Milestone 18 CI and deployment
+## Milestone 16 CI and deployment
 
 - [ ] Vercel deployment with preview URLs on PRs
 - [ ] GitHub Actions for type check, lint, unit tests, and Playwright smoke on each PR
@@ -185,7 +187,8 @@ This is the project board in a single markdown file. Everything is TypeScript an
 ## Acceptance criteria v1
 
 - [ ] User pastes a YouTube URL and sees title and channel avatar within two seconds
-- [ ] User selects a local file, trims a segment up to 60 seconds, and previews it vertically with safe zones
+- [ ] User downloads YouTube video locally and processes it for Instagram Stories format
+- [ ] User previews the video vertically with safe zones
 - [ ] Export completes entirely client side and downloads an MP4 that plays on iPhone and Android
 - [ ] Output shows video, title, and channel info with reserved bottom area for link sticker
 - [ ] Cover JPEG exports correctly

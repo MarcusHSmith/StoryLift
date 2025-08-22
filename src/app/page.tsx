@@ -7,7 +7,7 @@ import { YouTubeMetadataPreview } from '@/components/youtube-metadata-preview';
 import { YouTubeService } from '@/lib/youtube-service';
 import { useProjectStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Upload } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function Home() {
   const {
@@ -64,7 +64,7 @@ export default function Home() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">StoryLift</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Transform your videos into Instagram Stories with professional
+            Transform YouTube videos into Instagram Stories with professional
             editing tools
           </p>
         </div>
@@ -132,6 +132,30 @@ export default function Home() {
               isLoading={isLoading}
             />
 
+            {/* YouTube-only notice */}
+            <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+              <div className="flex items-start space-x-3">
+                <div className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-200">
+                  <p className="font-medium mb-1">YouTube Videos Only</p>
+                  <p className="text-blue-700 dark:text-blue-300">
+                    This app processes YouTube videos for Instagram Stories.
+                    You&apos;ll need to download the video locally first, then
+                    upload it for processing.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Metadata Preview */}
             {metadata && showMetadata && (
               <div className="space-y-4">
@@ -148,22 +172,6 @@ export default function Home() {
                 </Button>
               </div>
             )}
-
-            {/* File Upload Placeholder */}
-            <div className="bg-card border rounded-lg p-6">
-              <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                <Upload className="w-5 h-5" />
-                Upload Video File
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                Or upload a video file directly (coming in Milestone 3)
-              </p>
-              <div className="p-4 border-2 border-dashed border-muted-foreground/25 rounded-lg text-center">
-                <p className="text-sm text-muted-foreground">
-                  File upload coming in Milestone 3...
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

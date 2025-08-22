@@ -1,11 +1,13 @@
 # StoryLift
 
-A web application that helps users create Instagram Stories from YouTube videos. Users can paste a YouTube URL to get metadata, upload a local video file, trim it to 60 seconds, and export a 9:16 vertical video optimized for Instagram Stories.
+A web application that helps users create Instagram Stories from YouTube videos. Users can paste a YouTube URL to get metadata, download the video locally, and then process it to create a 9:16 vertical video optimized for Instagram Stories.
+
+**Note: This app focuses exclusively on YouTube video processing. Users must download YouTube videos manually before processing due to YouTube's terms of service.**
 
 ## Features
 
 - YouTube URL metadata extraction (title, channel info)
-- Local video file upload (MP4/MOV)
+- YouTube video processing for Instagram Stories format
 - Video trimming with timeline scrubber
 - 9:16 aspect ratio preview and export
 - YouTube branding overlay options
@@ -21,7 +23,7 @@ A web application that helps users create Instagram Stories from YouTube videos.
 - **State Management**: Zustand
 - **Validation**: Zod
 - **Testing**: Vitest + React Testing Library + Playwright
-- **Video Processing**: WebCodecs + ffmpeg.wasm
+- **Video Processing**: WebCodecs + alternative encoding solutions
 - **Deployment**: Vercel
 
 ## Getting Started
@@ -120,7 +122,7 @@ src/
 ### Architecture Decisions
 
 - **Client-side processing**: All video processing happens in the browser for privacy
-- **WebCodecs first**: Use modern Web APIs when available, fallback to ffmpeg.wasm
+- **WebCodecs first**: Use modern Web APIs when available, fallback to alternative encoding solutions
 - **9:16 aspect ratio**: Optimized for Instagram Stories format
 - **Progressive enhancement**: Core functionality works without advanced features
 

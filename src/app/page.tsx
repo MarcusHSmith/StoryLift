@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { PreviewFrame } from '@/components/ui/preview-frame';
 import { YouTubeUrlForm } from '@/components/youtube-url-form';
 import { YouTubeMetadataPreview } from '@/components/youtube-metadata-preview';
+import { VideoUpload } from '@/components/video-upload';
 import { YouTubeService } from '@/lib/youtube-service';
 import { useProjectStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
@@ -146,11 +147,14 @@ export default function Home() {
                   </svg>
                 </div>
                 <div className="text-sm text-blue-800 dark:text-blue-200">
-                  <p className="font-medium mb-1">YouTube Videos Only</p>
+                  <p className="font-medium mb-1">
+                    Important: Download Videos First
+                  </p>
                   <p className="text-blue-700 dark:text-blue-300">
-                    This app processes YouTube videos for Instagram Stories.
-                    You&apos;ll need to download the video locally first, then
-                    upload it for processing.
+                    Due to YouTube&apos;s terms of service, you must download
+                    YouTube videos locally before processing. Use tools like
+                    yt-dlp or browser extensions to download, then upload the
+                    file here.
                   </p>
                 </div>
               </div>
@@ -160,6 +164,9 @@ export default function Home() {
             {metadata && showMetadata && (
               <div className="space-y-4">
                 <YouTubeMetadataPreview metadata={metadata} />
+
+                {/* Video Upload Section */}
+                <VideoUpload />
 
                 {/* Continue Button */}
                 <Button

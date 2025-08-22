@@ -45,12 +45,12 @@ Check items off as you go.
 
 ---
 
-## Milestone 3 YouTube video processing
+## Milestone 3 YouTube video processing ✅
 
-- [ ] Extract video stream from YouTube URL (requires user to download video locally first)
-- [ ] Process downloaded video file for Instagram Stories format
-- [ ] Show video details resolution, fps, duration
-- [ ] Note: Users must download YouTube videos manually due to YouTube's terms of service
+- [x] Extract video stream from YouTube URL (requires user to download video locally first)
+- [x] Process downloaded video file for Instagram Stories format
+- [x] Show video details resolution, fps, duration
+- [x] Note: Users must download YouTube videos manually due to YouTube's terms of service
 
 ---
 

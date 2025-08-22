@@ -29,15 +29,15 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ---
 
-## Milestone 2 metadata from YouTube URL
+## Milestone 2 metadata from YouTube URL ✅
 
-- [ ] Component `YouTubeUrlForm` with validation using zod
-- [ ] Extract video id from common URL patterns
-- [ ] Fetch metadata via oEmbed for title and thumbnail
-- [ ] Fetch channel name and avatar and subscriber count via no-auth public endpoints where available, otherwise ask user to enter channel handle
-- [ ] Store metadata in global state
-- [ ] Show title, channel avatar, and channel name preview, channel subscriber count
-- [ ] Handle private video or invalid URL errors with friendly messages
+- [x] Component `YouTubeUrlForm` with validation using zod
+- [x] Extract video id from common URL patterns
+- [x] Fetch metadata via oEmbed for title and thumbnail
+- [x] Fetch channel name and avatar and subscriber count via no-auth public endpoints where available, otherwise ask user to enter channel handle
+- [x] Store metadata in global state
+- [x] Show title, channel avatar, and channel name preview, channel subscriber count
+- [x] Handle private video or invalid URL errors with friendly messages
 
 ---
 

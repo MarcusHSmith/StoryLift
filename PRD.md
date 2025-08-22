@@ -2,7 +2,7 @@
 
 This is the project board in a single markdown file. Everything is TypeScript and deploys on Vercel.
 
-**Note: This application focuses exclusively on YouTube video processing for Instagram Stories. Users must download YouTube videos locally before processing due to YouTube's terms of service. The application provides automated processing and export without manual editing tools.**
+**Note: This application focuses exclusively on YouTube video processing for Instagram Stories. The application provides automated processing and export without manual editing tools.**
 
 Check items off as you go.
 
@@ -47,10 +47,9 @@ Check items off as you go.
 
 ## Milestone 3 YouTube video processing ✅
 
-- [x] Extract video stream from YouTube URL (requires user to download video locally first)
-- [x] Process downloaded video file for Instagram Stories format
+- [x] Extract video stream from YouTube URL
+- [x] Process video for Instagram Stories format
 - [x] Show video details resolution, fps, duration
-- [x] Note: Users must download YouTube videos manually due to YouTube's terms of service
 
 ---
 
@@ -64,7 +63,19 @@ Check items off as you go.
 - [x] Safe zone overlay guides top clear and bottom clear
 - [x] Render title and channel strip as separate transparent layer
 - [x] Font loading with fallback stack and text overflow ellipsis
-- [ ] **Note: Direct editing functionality removed - focus on automated processing and export**
+
+---
+
+## Milestone 5 server-side video processing and download ✅
+
+- [x] Create video processing pipeline with FFmpeg for timestamp extraction
+- [x] Implement Instagram Stories format conversion (9:16, 1080x1920, 30fps)
+- [x] Add background blur and overlay composition on server-side
+- [x] Set up video storage and cleanup service (temporary file management)
+- [x] Create progress tracking API endpoints for long-running processes
+- [x] Implement error handling for processing errors
+- [x] Add rate limiting and abuse prevention for video processing
+- [x] Set up monitoring and logging for video processing operations
 
 ---
 
@@ -179,7 +190,7 @@ Check items off as you go.
 ## Acceptance criteria v1
 
 - [ ] User pastes a YouTube URL and sees title and channel avatar within two seconds
-- [ ] User downloads YouTube video locally and processes it for Instagram Stories format
+- [ ] User processes YouTube video for Instagram Stories format
 - [ ] User previews the video vertically with safe zones
 - [ ] Export completes entirely client side and downloads an MP4 that plays on iPhone and Android
 - [ ] Output shows video, title, and channel info with reserved bottom area for link sticker

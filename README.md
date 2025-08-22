@@ -1,4 +1,4 @@
-# StoryLift
+git # StoryLift
 
 A web application that helps users create Instagram Stories from YouTube videos. Users can paste a YouTube URL to get metadata, download the video locally, and then process it to create a 9:16 vertical video optimized for Instagram Stories.
 

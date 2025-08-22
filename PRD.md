@@ -54,16 +54,16 @@ Check items off as you go.
 
 ---
 
-## Milestone 4 canvas and preview
+## Milestone 4 canvas and preview ✅
 
-- [ ] Create an OffscreenCanvas backed preview running in a Web Worker
-- [ ] 9 by 16 canvas at preview scale fit to viewport
-- [ ] Draw background blur layer from source frame
-- [ ] Draw fit video layer centered
-- [ ] Toggle between blurred edge mode and smart crop mode
-- [ ] Safe zone overlay guides top clear and bottom clear
-- [ ] Render title and channel strip as separate transparent layer
-- [ ] Font loading with fallback stack and text overflow ellipsis
+- [x] Create an OffscreenCanvas backed preview running in a Web Worker
+- [x] 9 by 16 canvas at preview scale fit to viewport
+- [x] Draw background blur layer from source frame
+- [x] Draw fit video layer centered
+- [x] Toggle between blurred edge mode and smart crop mode
+- [x] Safe zone overlay guides top clear and bottom clear
+- [x] Render title and channel strip as separate transparent layer
+- [x] Font loading with fallback stack and text overflow ellipsis
 - [ ] **Note: Direct editing functionality removed - focus on automated processing and export**
 
 ---

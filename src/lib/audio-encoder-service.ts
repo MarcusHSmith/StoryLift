@@ -11,10 +11,19 @@ export interface AudioData {
   duration: number;
 }
 
+export interface AudioSourceInfo {
+  sampleRate: number;
+  numberOfChannels: number;
+  duration: number;
+  codec?: string;
+  isCompatible: boolean;
+}
+
 export class AudioEncoderService {
   private encoder: AudioEncoder | null = null;
   private isEncoding = false;
   private encodedChunks: EncodedAudioChunk[] = [];
+  private sourceInfo: AudioSourceInfo | null = null;
 
   /**
    * Default configuration for Instagram Stories
@@ -24,6 +33,16 @@ export class AudioEncoderService {
     numberOfChannels: 2,
     bitrate: 128000, // 128 kbps
     codec: 'mp4a.40.2', // AAC-LC
+  };
+
+  /**
+   * Alternative configuration for AAC-HE (High Efficiency)
+   */
+  static readonly HE_CONFIG: AudioEncoderConfig = {
+    sampleRate: 44100,
+    numberOfChannels: 2,
+    bitrate: 64000, // 64 kbps
+    codec: 'mp4a.40.5', // AAC-HE
   };
 
   /**
@@ -53,6 +72,52 @@ export class AudioEncoderService {
       console.warn('AAC support check failed:', error);
       return false;
     }
+  }
+
+  /**
+   * Analyze audio source for compatibility
+   */
+  analyzeAudioSource(
+    sampleRate: number,
+    numberOfChannels: number,
+    duration: number,
+    sourceCodec?: string
+  ): AudioSourceInfo {
+    const isCompatible =
+      sampleRate === 44100 &&
+      numberOfChannels === 2 &&
+      sourceCodec === 'mp4a.40.2'; // AAC-LC
+
+    this.sourceInfo = {
+      sampleRate,
+      numberOfChannels,
+      duration,
+      codec: sourceCodec,
+      isCompatible,
+    };
+
+    console.log('Audio source analysis:', this.sourceInfo);
+    return this.sourceInfo;
+  }
+
+  /**
+   * Get the best audio configuration based on source compatibility
+   */
+  getBestAudioConfig(): AudioEncoderConfig {
+    if (this.sourceInfo?.isCompatible) {
+      // If source is already compatible, we can potentially copy without re-encoding
+      console.log('Audio source is compatible, may copy without re-encoding');
+      return AudioEncoderService.DEFAULT_CONFIG;
+    }
+
+    // Check if we can use HE-AAC for better compression
+    if (this.sourceInfo && this.sourceInfo.sampleRate <= 22050) {
+      console.log('Using AAC-HE for low sample rate source');
+      return AudioEncoderService.HE_CONFIG;
+    }
+
+    // Default to AAC-LC
+    return AudioEncoderService.DEFAULT_CONFIG;
   }
 
   /**
@@ -147,6 +212,20 @@ export class AudioEncoderService {
       console.error('Failed to encode audio:', error);
       throw error;
     }
+  }
+
+  /**
+   * Check if audio can be copied without re-encoding
+   */
+  canCopyWithoutReencoding(): boolean {
+    return this.sourceInfo?.isCompatible ?? false;
+  }
+
+  /**
+   * Get audio source information
+   */
+  getSourceInfo(): AudioSourceInfo | null {
+    return this.sourceInfo;
   }
 
   /**
@@ -261,5 +340,6 @@ export class AudioEncoderService {
     }
     this.isEncoding = false;
     this.encodedChunks = [];
+    this.sourceInfo = null;
   }
 }

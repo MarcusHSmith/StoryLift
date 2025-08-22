@@ -79,14 +79,14 @@ Check items off as you go.
 
 ---
 
-## Milestone 6 encoding path WebCodecs fast path
+## Milestone 6 encoding path WebCodecs fast path ✅
 
-- [ ] Feature detect `VideoEncoder` and `AudioEncoder`
-- [ ] Configure H 264 `avc1` baseline or main profile 1080 by 1920 30 fps
-- [ ] Target bitrate 6 Mbps
-- [ ] Encode frames from the worker preview pipeline without duplicate work
-- [ ] Package into MP4 container using mp4 muxer library
-- [ ] AAC audio encode or copy from source when compatible
+- [x] Feature detect `VideoEncoder` and `AudioEncoder`
+- [x] Configure H 264 `avc1` baseline or main profile 1080 by 1920 30 fps
+- [x] Target bitrate 6 Mbps
+- [x] Encode frames from the worker preview pipeline without duplicate work
+- [x] Package into MP4 container using mp4 muxer library
+- [x] AAC audio encode or copy from source when compatible
 
 ---
 

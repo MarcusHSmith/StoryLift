@@ -1,3 +1,5 @@
+import { WebCodecsService } from './webcodecs-service';
+
 export interface VideoEncoderConfig {
   width: number;
   height: number;
@@ -43,13 +45,28 @@ export class VideoEncoderService {
   };
 
   /**
-   * Initialize the video encoder with the specified configuration
+   * High profile configuration for better quality (if supported)
    */
-  async initialize(
-    config: VideoEncoderConfig = VideoEncoderService.DEFAULT_CONFIG
-  ): Promise<void> {
+  static readonly HIGH_PROFILE_CONFIG: VideoEncoderConfig = {
+    width: 1080,
+    height: 1920,
+    fps: 30,
+    bitrate: 6000000, // 6 Mbps
+    codec: 'avc1.64001E', // H.264 high profile
+    profile: 'high',
+  };
+
+  /**
+   * Initialize the video encoder with the best supported configuration
+   */
+  async initialize(config?: VideoEncoderConfig): Promise<VideoEncoderConfig> {
     if (!this.isSupported()) {
       throw new Error('VideoEncoder is not supported in this browser');
+    }
+
+    // If no config provided, get the best supported configuration
+    if (!config) {
+      config = await VideoEncoderService.getBestSupportedConfig();
     }
 
     // Check if the configuration is supported
@@ -89,6 +106,8 @@ export class VideoEncoderService {
     console.log(
       `VideoEncoder initialized with ${config.profile} profile: ${config.width}x${config.height} @ ${config.fps}fps`
     );
+
+    return config;
   }
 
   /**
@@ -172,25 +191,40 @@ export class VideoEncoderService {
    * Get the best supported configuration for the current browser
    */
   static async getBestSupportedConfig(): Promise<VideoEncoderConfig> {
-    // Try main profile first
     try {
-      const isMainSupported = await VideoEncoder.isConfigSupported({
-        codec: VideoEncoderService.MAIN_PROFILE_CONFIG.codec,
-        width: VideoEncoderService.MAIN_PROFILE_CONFIG.width,
-        height: VideoEncoderService.MAIN_PROFILE_CONFIG.height,
-        bitrate: VideoEncoderService.MAIN_PROFILE_CONFIG.bitrate,
-        framerate: VideoEncoderService.MAIN_PROFILE_CONFIG.fps,
-      });
+      // Get the best supported H.264 profile
+      const bestCodec = await WebCodecsService.getBestH264Profile();
 
-      if (isMainSupported.supported) {
-        return VideoEncoderService.MAIN_PROFILE_CONFIG;
+      // Get the best supported resolution
+      const bestResolution = await WebCodecsService.getBestResolution();
+
+      // Determine which profile this corresponds to
+      let profile: string;
+      if (bestCodec.includes('64001E')) {
+        profile = 'high';
+      } else if (bestCodec.includes('4D401E')) {
+        profile = 'main';
+      } else {
+        profile = 'baseline';
       }
-    } catch (error) {
-      console.warn('Main profile not supported, falling back to baseline');
-    }
 
-    // Fall back to baseline profile
-    return VideoEncoderService.DEFAULT_CONFIG;
+      return {
+        width: bestResolution.width,
+        height: bestResolution.height,
+        fps: 30, // Instagram Stories standard
+        bitrate: 6000000, // 6 Mbps target
+        codec: bestCodec,
+        profile,
+      };
+    } catch (error) {
+      console.warn(
+        'Failed to get best supported config, using fallback:',
+        error
+      );
+
+      // Fallback to baseline profile
+      return VideoEncoderService.DEFAULT_CONFIG;
+    }
   }
 
   /**

@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Editor', href: '/editor' },
   { name: 'Export', href: '/export' },
 ];
 

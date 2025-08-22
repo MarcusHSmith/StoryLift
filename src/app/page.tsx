@@ -7,8 +7,6 @@ import { YouTubeMetadataPreview } from '@/components/youtube-metadata-preview';
 import { VideoUpload } from '@/components/video-upload';
 import { YouTubeService } from '@/lib/youtube-service';
 import { useProjectStore } from '@/lib/store';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
 
 export default function Home() {
   const {
@@ -54,19 +52,14 @@ export default function Home() {
     }
   };
 
-  const handleContinueToEditor = () => {
-    // Navigate to editor page (will be implemented in future milestones)
-    console.log('Continue to editor with metadata:', metadata);
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">StoryLift</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Transform YouTube videos into Instagram Stories with professional
-            editing tools
+            Transform YouTube videos into Instagram Stories with automated
+            processing and export
           </p>
         </div>
 
@@ -167,16 +160,6 @@ export default function Home() {
 
                 {/* Video Upload Section */}
                 <VideoUpload />
-
-                {/* Continue Button */}
-                <Button
-                  onClick={handleContinueToEditor}
-                  className="w-full"
-                  size="lg"
-                >
-                  Continue to Editor
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
               </div>
             )}
           </div>

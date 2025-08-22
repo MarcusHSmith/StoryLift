@@ -2,7 +2,7 @@
 
 This is the project board in a single markdown file. Everything is TypeScript and deploys on Vercel.
 
-**Note: This application focuses exclusively on YouTube video processing for Instagram Stories. Users must download YouTube videos locally before processing due to YouTube's terms of service.**
+**Note: This application focuses exclusively on YouTube video processing for Instagram Stories. Users must download YouTube videos locally before processing due to YouTube's terms of service. The application provides automated processing and export without manual editing tools.**
 
 Check items off as you go.
 
@@ -64,15 +64,7 @@ Check items off as you go.
 - [ ] Safe zone overlay guides top clear and bottom clear
 - [ ] Render title and channel strip as separate transparent layer
 - [ ] Font loading with fallback stack and text overflow ellipsis
-
----
-
-## Milestone 5 subject aware crop optional
-
-- [ ] Lightweight face detection via MediaPipe Face Detection
-- [ ] Compute a tracking window and smooth with a simple Kalman or exponential filter
-- [ ] Clamp crop bounds to avoid jitter
-- [ ] Fallback to center crop when no face is found
+- [ ] **Note: Direct editing functionality removed - focus on automated processing and export**
 
 ---
 
@@ -192,6 +184,7 @@ Check items off as you go.
 - [ ] Export completes entirely client side and downloads an MP4 that plays on iPhone and Android
 - [ ] Output shows video, title, and channel info with reserved bottom area for link sticker
 - [ ] Cover JPEG exports correctly
+- [ ] **Note: Simplified workflow - no manual editing, focus on automated processing and export**
 
 ---
 

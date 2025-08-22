@@ -13,6 +13,7 @@ A web application that helps users create Instagram Stories from YouTube videos.
 - YouTube branding overlay options
 - Client-side video processing
 - Instagram Stories optimization
+- Automated processing and export (no manual editing required)
 
 ## Tech Stack
 
@@ -22,7 +23,6 @@ A web application that helps users create Instagram Stories from YouTube videos.
 - **UI Components**: shadcn/ui
 - **State Management**: Zustand
 - **Validation**: Zod
-- **Testing**: Vitest + React Testing Library + Playwright
 - **Video Processing**: WebCodecs + alternative encoding solutions
 - **Deployment**: Vercel
 
@@ -56,19 +56,6 @@ npm run dev
 # Open http://localhost:3000
 ```
 
-### Testing
-
-```bash
-# Unit tests
-npm run test          # Run tests in watch mode
-npm run test:run      # Run tests once
-npm run test:ui       # Run tests with UI
-
-# E2E tests
-npm run test:e2e      # Run Playwright tests
-npm run test:e2e:ui   # Run Playwright tests with UI
-```
-
 ### Code Quality
 
 ```bash
@@ -95,14 +82,22 @@ npm start
 ```
 src/
 ├── app/                 # Next.js App Router
+│   ├── export/         # Export page for downloads
 │   ├── health/         # Health check endpoint
 │   ├── globals.css     # Global styles
 │   ├── layout.tsx      # Root layout
 │   └── page.tsx        # Home page
 ├── components/          # Reusable components
-│   └── ui/             # shadcn/ui components
+│   ├── ui/             # shadcn/ui components
+│   ├── video-upload.tsx
+│   ├── youtube-metadata-preview.tsx
+│   └── youtube-url-form.tsx
 ├── lib/                 # Utility functions
-└── test/                # Test setup
+│   ├── canvas-worker.ts
+│   ├── store.ts
+│   ├── utils.ts
+│   ├── video-service.ts
+│   └── youtube-service.ts
 ```
 
 ## Decisions Log
@@ -114,8 +109,6 @@ src/
 - **Tailwind CSS v4**: Latest version with improved performance
 - **shadcn/ui**: Component library built on Radix UI primitives
 - **Zustand**: Lightweight state management alternative to Redux
-- **Vitest**: Fast test runner with Vite integration
-- **Playwright**: Modern E2E testing framework
 - **Husky + lint-staged**: Git hooks for code quality
 - **ESLint + Prettier**: Code linting and formatting
 
@@ -125,13 +118,14 @@ src/
 - **WebCodecs first**: Use modern Web APIs when available, fallback to alternative encoding solutions
 - **9:16 aspect ratio**: Optimized for Instagram Stories format
 - **Progressive enhancement**: Core functionality works without advanced features
+- **Automated processing**: Focus on streamlined workflow rather than manual editing tools
 
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Run tests and linting
+4. Run linting
 5. Submit a pull request
 
 ## License

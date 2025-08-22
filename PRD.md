@@ -19,13 +19,13 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ---
 
-## Milestone 1 core UX and routing
+## Milestone 1 core UX and routing ✅
 
-- [ ] Pages `/` for input, `/editor` for trimming and layout, `/export` for downloads
-- [ ] Global layout with responsive container and a 9 by 16 preview frame
-- [ ] App header with name and GitHub link
-- [ ] Empty state illustration for first load
-- [ ] Add theme toggle and system preference support
+- [x] Pages `/` for input, `/editor` for trimming and layout, `/export` for downloads
+- [x] Global layout with responsive container and a 9 by 16 preview frame
+- [x] App header with name and GitHub link (https://github.com/MarcusHSmith/StoryLift)
+- [x] Empty state illustration for first load
+- [x] Add theme toggle and system preference support
 
 ---
 
@@ -34,9 +34,9 @@ This is the project board in a single markdown file. Everything is TypeScript an
 - [ ] Component `YouTubeUrlForm` with validation using zod
 - [ ] Extract video id from common URL patterns
 - [ ] Fetch metadata via oEmbed for title and thumbnail
-- [ ] Fetch channel name and avatar via no-auth public endpoints where available, otherwise ask user to enter channel handle
+- [ ] Fetch channel name and avatar and subscriber count via no-auth public endpoints where available, otherwise ask user to enter channel handle
 - [ ] Store metadata in global state
-- [ ] Show title, channel avatar, and channel name preview
+- [ ] Show title, channel avatar, and channel name preview, channel subscriber count
 - [ ] Handle private video or invalid URL errors with friendly messages
 
 ---
@@ -49,17 +49,6 @@ This is the project board in a single markdown file. Everything is TypeScript an
 - [ ] Show file details resolution, fps, duration
 - [ ] Persist a file handle using OPFS or File System Access API when supported
 - [ ] Guardrails file size limit setting with warning prompts
-
----
-
-## Milestone 4 timeline and trimming
-
-- [ ] `TimelineScrubber` that renders waveform or thumbnail strip
-- [ ] Draggable in and out points with keyboard nudging
-- [ ] Timestamp input supporting `mm ss` and `hh mm ss`
-- [ ] Constraint enforce max 60 seconds for stories
-- [ ] Snap to nearest keyframe hint after analyze pass
-- [ ] Show resulting clip length
 
 ---
 
@@ -148,7 +137,6 @@ This is the project board in a single markdown file. Everything is TypeScript an
 ## Milestone 13 error states and resilience
 
 - [ ] Graceful handling of unsupported codecs
-- [ ] Low memory mode that switches to 720 by 1280
 - [ ] Timeout and cancel controls for long renders
 - [ ] Retry pipeline button that reuses decoded frames when possible
 - [ ] Analytics events for failures with anonymous telemetry toggle
@@ -176,16 +164,7 @@ This is the project board in a single markdown file. Everything is TypeScript an
 
 ---
 
-## Milestone 16 analytics and feedback
-
-- [ ] Add PostHog or Plausible with cookieless mode
-- [ ] Track render durations, success rates, and fallbacks used
-- [ ] In app feedback widget posting to GitHub issues or an inbox
-- [ ] Simple success survey after export
-
----
-
-## Milestone 17 documentation and examples
+## Milestone 16 documentation and examples
 
 - [ ] Update README with feature list and screenshots
 - [ ] Add “How it works” page describing the client side pipeline
@@ -216,12 +195,8 @@ This is the project board in a single markdown file. Everything is TypeScript an
 ## Technical targets Instagram Stories
 
 - [ ] Aspect ratio 9 by 16
-- [ ] Resolution 1080 by 1920 preferred, 720 by 1280 fallback
+- [ ] Resolution 1080 by 1920 preferred
 - [ ] Frame rate 30 fps
 - [ ] Video codec H 264 in MP4
 - [ ] Bitrate target 5 to 7.5 Mbps
 - [ ] Audio AAC 44.1 kHz at 128 kbps
-
----
-
-## Suggested directory structure
